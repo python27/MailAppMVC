@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MailAppMVC.Models.Mail>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h3>Lista wysłanych wiadomości e-mail</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        @{
+                            ViewData["Title"] = "Lista wysłanych wiadomości";
+
+                            if (Model != null && Model.Any())
+                            {
+                                <table class="table table-bordered " style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Lp.</th>
+                                            <th>Imię</th>
+                                            <th>Nazwisko</th>
+                                            <th>E-mail</th>
+                                            <th>Temat</th>
+                                            <th>Wiadomość</th>
+                                            <th>Operacja</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int i = 1;
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>@(i++)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.Subject)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.Message)</td>
+                                                    <td>
+                                                        <a class="btn btn-primary btn-sm" asp-controller="Mail" asp-action="Details" asp-route-id="@item.Id">Pokaż</a>
+                                                        <a class="btn btn-primary btn-sm" asp-controller="Mail" asp-action="Edit" asp-route-id="@item.Id">Edytuj</a>
+                                                        <a class="btn btn-primary btn-sm" style="background-color:red" asp-controller="Mail" asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    Nie wysłano żadnej wiadomości!
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+﻿@model MailAppMVC.Models.Mail
+
+<h2>Napisz wiadomość</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    Formularz 1 - Dodaj adresata
+                </div>
+                <div class="card-body">
+                    <form id="form1">
+                        <div class="form-group">
+                            <label class="control-label">Imię</label>
+                            <div>
+                                <input id="FirstName" class="form-control" type="text" placeholder="Imię" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Nazwisko</label>
+                            <div>
+                                <input id="LastName" class="form-control" type="text" placeholder="Nazwisko" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">E-mail</label>
+                            <div>
+                                <input id="Email" class="form-control" type="email" placeholder="E-mail" required />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    Formularz 2 - Wprowadź temat i treść wiadomości
+                </div>
+                <div class="card-body">
+                    <form id="form2">
+                        <div class="form-group">
+                            <label for="Subject" class="control-label">Temat</label>
+                            <div>
+                                <select id="Subject" class="form-control" type="text" placeholder="Temat" required>
+                                    <option>Temat 1</option>
+                                    <option>Temat 2</option>
+                                    <option>Temat 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Message" class="control-label">Wiadomość</label>
+                            <textarea id="Message" class="form-control" placeholder="Wiadomość" required></textarea>
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <hr />
+                            <input id="save" type="button" class="btn btn-primary" name="save" value="Wyślij" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1>@ViewBag.Message</h1>
+
+<script>
+    $(document).ready(function () {
+        $("#save").click(function () {
+            var firstName = $("#FirstName").val();
+            var lastName = $("#LastName").val();
+            var email = $("#Email").val();
+            var subject = $("#Subject").val();
+            var message = $("#Message").val();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Create","Mail")',
+                data: { FirstName: firstName, LastName: lastName, Email: email, Subject: subject, Message: message },
+                success: function () {
+                    Swal.fire({
+                        title: 'Wiadomość została wysłana!',
+                        text: 'Dane zostały prawidłowo zapisane!',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    });
+                    window.location = '/Mail/Index';
+                },
+                error: function () {
+                    alert("Wiadomośc nie została wysłana. Sprawdź ustawienia konta pocztowego!");
+                }
+            });
+        });
+    });
+</script>
