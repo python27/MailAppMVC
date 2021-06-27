@@ -11,7 +11,7 @@ What we need to do to run the project:
 ### Adding a new e-mail message
 ![alt text](https://github.com/python27/MailAppMVC/blob/master/MailAppMVC/Screenshot/MailAppMVC_NewMessage.JPG?raw=true)
 
-### List of e-mails sent
+### List of sent e-mails
 ![alt text](https://github.com/python27/MailAppMVC/blob/master/MailAppMVC/Screenshot/MailAppMVC_EmailsList.JPG?raw=true)
 
 ### Information after sending an e-mail
