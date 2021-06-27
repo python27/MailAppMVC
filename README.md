@@ -4,7 +4,7 @@ What we need to do to run the project:
 
 1. Create database and table. The SQL script is available in the `CreateTable.sql` file.
 2. Configure your email and database settings in the `appsettings.json` file.
-3. Enjoy the ability to send emails using MVC applications.
+3. Enjoy the ability to send emails using ASP.Net Core MVC applications.
 
 ## Sample screenshots of the application
 
